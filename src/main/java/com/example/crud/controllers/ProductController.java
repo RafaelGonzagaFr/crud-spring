@@ -42,4 +42,10 @@ public class ProductController {
             return ResponseEntity.notFound().build();
         }
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity deleteProduct(@PathVariable String id){
+    repository.deleteById(id);
+    return ResponseEntity.noContent().build();
+    }
 }
