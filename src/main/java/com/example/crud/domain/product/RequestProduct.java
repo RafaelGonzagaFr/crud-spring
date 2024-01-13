@@ -11,7 +11,10 @@ public record RequestProduct(
         @NotBlank
         String name,
         @NotNull
-        Integer price_in_cents) { //DTO (objeto apenas para transferir dado, ou receber, ou enviar para o cliente)
+        Integer price_in_cents,
+
+        Boolean active
+) { //DTO (objeto apenas para transferir dado, ou receber, ou enviar para o cliente)
 
 
 }
