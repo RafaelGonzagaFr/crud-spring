@@ -1,7 +1,7 @@
 package com.example.crud.controllers;
 
 import com.example.crud.domain.product.Product;
-import com.example.crud.domain.product.ProductRepository;
+import com.example.crud.domain.repositories.ProductRepository;
 import com.example.crud.domain.product.RequestProduct;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
@@ -9,7 +9,6 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.yaml.snakeyaml.events.Event;
 
 import java.util.Optional;
 
