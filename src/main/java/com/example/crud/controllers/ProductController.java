@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
-@RestController //Indicar que essa classe representa um controller
-@RequestMapping("/product") //Definir o caminho desse controller
+@RestController() //Indicar que essa classe representa um controller
+@RequestMapping("product") //Definir o caminho desse controller
 public class ProductController {
     @Autowired //O que tem que ser injetado
     private ProductRepository repository;
