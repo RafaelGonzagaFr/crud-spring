@@ -2,8 +2,10 @@ package com.example.crud.controllers;
 
 import com.example.crud.domain.repositories.UserRepository;
 import com.example.crud.domain.user.AutheticationDTO;
+import com.example.crud.domain.user.LoginResponseDTO;
 import com.example.crud.domain.user.RegisterDTO;
 import com.example.crud.domain.user.User;
+import com.example.crud.infra.security.TokenService;
 import jakarta.validation.Valid;
 import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,12 +28,17 @@ public class AutheticationController  {
     @Autowired
     private UserRepository repository;
 
+    @Autowired
+    private TokenService tokenService;
+
     @PostMapping("/login")
     public ResponseEntity login(@RequestBody @Valid AutheticationDTO data) {
-        var userNamePassword = new UsernamePasswordAuthenticationToken(data.login(), data.password());
-        var auth = this.autheticationManager.authenticate(userNamePassword);
+        var usernamePassword = new UsernamePasswordAuthenticationToken(data.login(), data.password());
+        var auth = this.autheticationManager.authenticate(usernamePassword);
 
-        return ResponseEntity.ok().build();
+        var token = tokenService.generateToken((User) auth.getPrincipal());
+
+        return ResponseEntity.ok(new LoginResponseDTO(token));
     }
 
     @PostMapping("/register")
